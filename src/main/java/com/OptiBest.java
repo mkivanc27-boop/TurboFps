@@ -16,7 +16,7 @@ public class OptiBest implements ClientModInitializer {
         MINIMAL, BALANCED, MAX
     }
 
-    private static FPSMode currentMode = FPSMode.BALANCED; // default
+    private static FPSMode currentMode = FPSMode.BALANCED;
 
     @Override
     public void onInitializeClient() {
@@ -37,7 +37,7 @@ public class OptiBest implements ClientModInitializer {
         ConfigCategory general = builder.getOrCreateCategory("General");
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
-        // Aç/kapa
+        // Aç/kapa toggle
         entryBuilder.startBooleanToggle("Enable OptiBest", modActive)
                 .setDefaultValue(true)
                 .setSaveConsumer(val -> modActive = val)
@@ -50,7 +50,7 @@ public class OptiBest implements ClientModInitializer {
                 .build();
 
         general.addEntry(fpsModeEntry);
-        builder.build(); // Mod Menu algılar
+        builder.build(); // Mod Menu otomatik algılar
     }
 
     private static void applyOptimization() {
