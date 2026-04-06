@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "optibest",
+  "version": "1.0",
+  "name": "OptiBest",
+  "description": "Advanced FPS Booster Mod",
+  "authors": ["mbest700"],
+  "entrypoints": {
+    "client": ["com.optibest.OptiBest"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "1.21.4",
+    "modmenu": "*"
+  }
+}
