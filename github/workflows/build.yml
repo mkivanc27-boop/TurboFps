@@ -26,7 +26,8 @@ jobs:
         path: |
           ~/.gradle/caches
           ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}-v2
+        # Cache key değişti, eski cache’i atlatıyor
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}-v3
         restore-keys: ${{ runner.os }}-gradle-
 
     - name: Build OptiBest JAR
