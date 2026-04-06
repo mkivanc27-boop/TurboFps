@@ -26,9 +26,12 @@ jobs:
         path: |
           ~/.gradle/caches
           ~/.gradle/wrapper
-        # Cache key değişti, eski cache’i atlatıyor
         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}-v3
         restore-keys: ${{ runner.os }}-gradle-
+
+    # Çalıştırma izni hatasını bu satır çözüyor
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
 
     - name: Build OptiBest JAR
       run: ./gradlew build
@@ -37,4 +40,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: OptiBest-1.0
-        path: build/libs/optibest-1.0.jar
+        # Eğer build başarılı olursa libs içindeki jar'ı buraya yükleyecek
+        path: build/libs/*.jar
+        
