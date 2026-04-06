@@ -22,7 +22,6 @@ public class OptiBest implements ClientModInitializer {
     public void onInitializeClient() {
         System.out.println("OptiBest Ultra 1.21.4 loaded");
 
-        // FPS optimize thread
         new Thread(() -> {
             while (true) {
                 try {
@@ -32,25 +31,22 @@ public class OptiBest implements ClientModInitializer {
             }
         }).start();
 
-        // Mod Menu + Cloth Config GUI
         ConfigBuilder builder = ConfigBuilder.create().setTitle("OptiBest Settings");
         ConfigCategory general = builder.getOrCreateCategory("General");
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
-        // Aç/kapa toggle
         entryBuilder.startBooleanToggle("Enable OptiBest", modActive)
                 .setDefaultValue(true)
                 .setSaveConsumer(val -> modActive = val)
                 .build();
 
-        // FPS modu seçimi
         EnumListEntry<FPSMode> fpsModeEntry = entryBuilder.startEnumSelector("FPS Mode", FPSMode.class, currentMode)
                 .setDefaultValue(FPSMode.BALANCED)
                 .setSaveConsumer(val -> currentMode = val)
                 .build();
 
         general.addEntry(fpsModeEntry);
-        builder.build(); // Mod Menu otomatik algılar
+        builder.build();
     }
 
     private static void applyOptimization() {
@@ -80,7 +76,6 @@ public class OptiBest implements ClientModInitializer {
                 break;
         }
 
-        // 32 bloktan uzak entityleri invisible yap
         client.world.getEntities().forEach(entity -> {
             if (entity.distanceTo(client.player) > 32) entity.setInvisible(true);
         });
